@@ -89,6 +89,10 @@ else:
             st.markdown(f"**Recall (Sensibilidade)**: `{recall:.3f}`")
             st.markdown(f"**F1-score**: `{f1:.3f}`")
 
+    
+    else:
+        st.info("Aguardando upload do arquivo ou entrada via link.")
+
     # Explicações com imagens
     st.subheader("**Conceitos importantes**")
     c1, c2 = st.columns(2)
@@ -104,6 +108,3 @@ else:
         st.image('f1score.png', width=150)
     
     st.info('Sugestões e informações sobre o aplicativo: givagosouza@ufpa.br')
-    else:
-        st.info("Aguardando upload do arquivo ou entrada via link.")
-
