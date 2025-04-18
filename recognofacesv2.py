@@ -83,14 +83,12 @@ with c3:
     st.image('f1score.png', width=150)
 
 st.title("💬 Avaliação do desempenho usando o chat GPT")
-user_input = [f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a `{acuracia:.3f}`, Precisão igual a `{precisao:.3f}`, Recall igual a `{recall:.3f}` e F1-score igual a `{f1:.3f}`"]
-completion = openai.chat.completions.create(
+user_input = f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a {acuracia:.3f}, precisão igual a {precisao:.3f}, recall igual a {recall:.3f} e F1-score igual a {f1:.3f}."
+
+response = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
-        {
-            "role": "user",
-            "content": user_input,
-        },
-    ],
+        {"role": "user", "content": user_input}
+    ]
 )
-st,markdown(completion.choices[0].message.content)        
+st.markdown(response.choices[0].message["content"])
