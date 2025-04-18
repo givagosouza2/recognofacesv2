@@ -36,7 +36,7 @@ fp_qs = int(st.query_params["fp"])
 fn_qs = int(st.query_params["fn"])
 
 st.header("1. Faça upload da planilha com os resultados do teste ou peça a análise a partir do link no app:")
-    uploaded_file = st.file_uploader("Escolha um arquivo CSV", type=["csv"])
+uploaded_file = st.file_uploader("Escolha um arquivo CSV", type=["csv"])
 
 
 if vp_qs + vn_qs + fp_qs + fn_qs > 0:
