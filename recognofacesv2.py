@@ -49,12 +49,9 @@ if vp_qs + vn_qs + fp_qs + fn_qs > 0:
 
     with c1:
         st.subheader("1. Pré-visualização dos dados importados:")
-        st.dataframe(df)
-        categorias = df['Categoria'].value_counts()
-        vp = categorias.get("VP", 0)
-        vn = categorias.get("VN", 0)
-        fp = categorias.get("FP", 0)
-        fn = categorias.get("FN", 0)
+        st.write("Sem visualização prévia dos dados.")
+        
+        
 
     with c2:
         st.subheader("2. Totais extraídos da coluna 'Categoria'")
