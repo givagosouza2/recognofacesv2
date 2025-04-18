@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from openai import OpenAI
-
+from openai import RateLimitError
 
 
 
@@ -84,21 +84,14 @@ with c3:
     st.image('f1score.png', width=150)
 
 st.title("💬 Avaliação do desempenho usando o chat GPT")
-# Mensagem para avaliação
-user_input = f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a {acuracia:.3f}, precisão igual a {precisao:.3f}, recall igual a {recall:.3f} e F1-score igual a {f1:.3f}."
-
-# Faz a requisição com o novo cliente
-response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "user", "content": user_input}
-    ]
-)
-
-
-
-
-
+try:
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": user_input}]
+    )
+    st.markdown(response.choices[0].message.content)
+except RateLimitError:
+    st.error("❌ Limite de requisições atingido. Tente novamente em instantes.")
 
 
 
