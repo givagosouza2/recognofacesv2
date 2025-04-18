@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="😃",
     layout="wide"
 )
-client = OpenAI(st.secrets["openai"]["api_key"],  # this is also the default, it can be omitted)
+client = st.secrets["openai"]["api_key"]
 s1, s2 = st.columns([0.2, 1])
 
 with s1:
