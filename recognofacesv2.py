@@ -24,11 +24,17 @@ with s2:
     """, unsafe_allow_html=True)
 
 # === Verificação de parâmetros via URL ===
-query_params = st.experimental_get_query_params()
-vp_qs = int(query_params.get("vp", [0])[0])
-vn_qs = int(query_params.get("vn", [0])[0])
-fp_qs = int(query_params.get("fp", [0])[0])
-fn_qs = int(query_params.get("fn", [0])[0])
+#query_params = st.experimental_get_query_params()
+#vp_qs = int(query_params.get("vp", [0])[0])
+#vn_qs = int(query_params.get("vn", [0])[0])
+#fp_qs = int(query_params.get("fp", [0])[0])
+#fn_qs = int(query_params.get("fn", [0])[0])
+
+vp_qs = int(st.query_params["first_key"])
+vn_qs = int(st.query_params["second_key"])
+fp_qs = int(st.query_params["third_key"])
+fn_qs = int(st.query_params["forth_key"])
+
 
 if vp_qs + vn_qs + fp_qs + fn_qs > 0:
     st.success("✅ Dados recebidos automaticamente via link!")
