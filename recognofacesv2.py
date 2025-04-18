@@ -84,14 +84,21 @@ with c3:
     st.image('f1score.png', width=150)
 
 st.title("💬 Avaliação do desempenho usando o chat GPT")
-if st.button("📤 Enviar avaliação ao ChatGPT"):
-    try:
-        response = client.chat.completions.create(...)
-        st.markdown(response.choices[0].message.content)
-    except RateLimitError:
-        st.error("❌ Você atingiu o limite de requisições.")
+user_input = f"""
+Avalie o desempenho no teste de reconhecimento de faces considerando:
+- Acurácia: {acuracia:.3f}
+- Precisão: {precisao:.3f}
+- Recall: {recall:.3f}
+- F1-score: {f1:.3f}
+"""
 
-
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",  # ou "gpt-4" se sua conta tiver acesso
+    messages=[
+        {"role": "user", "content": user_input}
+    ]
+)
+st.markdown(response.choices[0].message.content)
 
 
 
