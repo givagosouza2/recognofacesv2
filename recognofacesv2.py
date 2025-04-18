@@ -93,18 +93,18 @@ else:
     else:
         st.info("Aguardando upload do arquivo ou entrada via link.")
 
-    # Explicações com imagens
-    st.subheader("**Conceitos importantes**")
-    c1, c2 = st.columns(2)
-    with c1:
-        st.success("**Acurácia: Proporção de classificações corretas.**")
-        st.success("**Precisão: Proporção de predições positivas corretas.**")
-        st.success("**Recall: Proporção de positivos reais corretamente identificados.**")
-        st.success("**F1-score: Média harmônica entre Precisão e Recall.**")
-    with c2:
-        st.image('acuracia.png', width=160)
-        st.image('precisao.png', width=150)
-        st.image('recall.png', width=150)
-        st.image('f1score.png', width=150)
-    
-    st.info('Sugestões e informações sobre o aplicativo: givagosouza@ufpa.br')
+# Explicações com imagens
+st.subheader("**Conceitos importantes**")
+c1, c2 = st.columns(2)
+with c1:
+    st.success("**Acurácia: Proporção de classificações corretas.**")
+    st.success("**Precisão: Proporção de predições positivas corretas.**")
+    st.success("**Recall: Proporção de positivos reais corretamente identificados.**")
+    st.success("**F1-score: Média harmônica entre Precisão e Recall.**")
+with c2:
+    st.image('acuracia.png', width=160)
+    st.image('precisao.png', width=150)
+    st.image('recall.png', width=150)
+    st.image('f1score.png', width=150)
+
+st.info('Sugestões e informações sobre o aplicativo: givagosouza@ufpa.br')
