@@ -89,7 +89,7 @@ user_input = f"Avalie o desempenho no teste de reconhecimento de faces considera
 
 # Faz a requisição com o novo cliente
 response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-3.5-turbo",
     messages=[
         {"role": "user", "content": user_input}
     ]
