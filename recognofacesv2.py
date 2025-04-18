@@ -30,10 +30,10 @@ with s2:
 #fp_qs = int(query_params.get("fp", [0])[0])
 #fn_qs = int(query_params.get("fn", [0])[0])
 
-vp_qs = int(st.query_params["first_key"])
-vn_qs = int(st.query_params["second_key"])
-fp_qs = int(st.query_params["third_key"])
-fn_qs = int(st.query_params["forth_key"])
+vp_qs = int(st.query_params["vp"])
+vn_qs = int(st.query_params["vn"])
+fp_qs = int(st.query_params["fp"])
+fn_qs = int(st.query_params["fn"])
 
 
 if vp_qs + vn_qs + fp_qs + fn_qs > 0:
