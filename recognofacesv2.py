@@ -24,7 +24,7 @@ with s2:
     """, unsafe_allow_html=True)
 
 # === Verificação de parâmetros via URL ===
-query_params = st.experimental_get_query_params()
+query_params = st.query_params()
 vp_qs = int(query_params.get("vp", [0])[0])
 vn_qs = int(query_params.get("vn", [0])[0])
 fp_qs = int(query_params.get("fp", [0])[0])
