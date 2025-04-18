@@ -45,13 +45,37 @@ if vp_qs + vn_qs + fp_qs + fn_qs > 0:
     precisao = vp / (vp + fp) if (vp + fp) > 0 else 0.0
     recall = vp / (vp + fn) if (vp + fn) > 0 else 0.0
     f1 = 2 * (precisao * recall) / (precisao + recall) if (precisao + recall) > 0 else 0.0
+    c1, c2, c3 = st.columns(3)
 
-    st.subheader("📊 Resultados das Métricas (via URL):")
-    st.markdown(f"**Acurácia**: `{acuracia:.3f}`")
-    st.markdown(f"**Precisão**: `{precisao:.3f}`")
-    st.markdown(f"**Recall (Sensibilidade)**: `{recall:.3f}`")
-    st.markdown(f"**F1-score**: `{f1:.3f}`")
-    st.stop()  # Interrompe aqui para evitar mostrar o upload
+    with c1:
+        st.subheader("1. Pré-visualização dos dados importados:")
+        st.dataframe(df)
+        categorias = df['Categoria'].value_counts()
+        vp = categorias.get("VP", 0)
+        vn = categorias.get("VN", 0)
+        fp = categorias.get("FP", 0)
+        fn = categorias.get("FN", 0)
+
+    with c2:
+        st.subheader("2. Totais extraídos da coluna 'Categoria'")
+        st.write(f"- Verdadeiros Positivos (VP): {vp}")
+        st.write(f"- Verdadeiros Negativos (VN): {vn}")
+        st.write(f"- Falsos Positivos (FP): {fp}")
+        st.write(f"- Falsos Negativos (FN): {fn}")
+
+    with c3:
+        total = vp + vn + fp + fn
+        acuracia = (vp + vn) / total if total > 0 else 0.0
+        precisao = vp / (vp + fp) if (vp + fp) > 0 else 0.0
+        recall = vp / (vp + fn) if (vp + fn) > 0 else 0.0
+        f1 = 2 * (precisao * recall) / (precisao + recall) if (precisao + recall) > 0 else 0.0
+
+        st.subheader("3. Resultados das métricas:")
+        st.markdown(f"**Acurácia**: `{acuracia:.3f}`")
+        st.markdown(f"**Precisão**: `{precisao:.3f}`")
+        st.markdown(f"**Recall (Sensibilidade)**: `{recall:.3f}`")
+        st.markdown(f"**F1-score**: `{f1:.3f}`")
+    
 else:
     st.header("1. Faça upload da planilha com os resultados do teste:")
     uploaded_file = st.file_uploader("Escolha um arquivo CSV", type=["csv"])
