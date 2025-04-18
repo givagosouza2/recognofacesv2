@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 from openai import OpenAI
 
-client = OpenAI(
-  api_key=os.environ['OPENAI_API_KEY'],  # this is also the default, it can be omitted
-)
+client = OpenAI(st.secrets["openai"]["api_key"],  # this is also the default, it can be omitted)
 # Página e layout
 st.set_page_config(
     page_title="RecognoFaces",
