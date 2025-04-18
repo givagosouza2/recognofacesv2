@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import openai
 from openai import OpenAI
+
 
 
 
@@ -10,7 +10,8 @@ st.set_page_config(
     page_icon="😃",
     layout="wide"
 )
-client = st.secrets["openai"]["api_key"]
+# Cria cliente com a chave da API
+client = OpenAI(api_key=st.secrets["openai"]["api_key"])
 s1, s2 = st.columns([0.2, 1])
 
 with s1:
@@ -83,12 +84,44 @@ with c3:
     st.image('f1score.png', width=150)
 
 st.title("💬 Avaliação do desempenho usando o chat GPT")
+# Mensagem para avaliação
 user_input = f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a {acuracia:.3f}, precisão igual a {precisao:.3f}, recall igual a {recall:.3f} e F1-score igual a {f1:.3f}."
 
-response = openai.ChatCompletion.create(
+# Faz a requisição com o novo cliente
+response = client.chat.completions.create(
     model="gpt-4",
     messages=[
         {"role": "user", "content": user_input}
     ]
 )
-st.markdown(response.choices[0].message["content"])
+
+# Mostra resposta
+st.markdown(response.choices[0].message.content)
+🛠️ Alternativamente: Faça downgrade da biblioteca OpenAI (para quem quer manter o código antigo)
+Se você quiser continuar usando o código openai.ChatCompletion.create(...), você pode fazer o downgrade da biblioteca com:
+
+bash
+Copiar
+Editar
+pip install openai==0.28.1
+E no código:
+
+python
+Copiar
+Editar
+import openai
+openai.api_key = st.secrets["openai"]["api_key"]
+
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "..." }]
+)
+
+
+
+
+
+
+
+
+
