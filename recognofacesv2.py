@@ -87,7 +87,7 @@ st.title("💬 Avaliação do desempenho usando o chat GPT")
 if st.button("📤 Enviar avaliação ao ChatGPT"):
     try:
         user_input = f"""
-        Avalie o desempenho no teste de reconhecimento de faces considerando:
+        Avalie o desempenho do participante no teste de reconhecimento de faces do app Recognofaces considerando:
         - Acurácia: {acuracia:.3f}
         - Precisão: {precisao:.3f}
         - Recall: {recall:.3f}
