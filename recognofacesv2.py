@@ -82,23 +82,14 @@ with c3:
     st.image('f1score.png', width=150)
 
 st.title("💬 Avaliação do desempenho usando o chat GPT")
-user_input = st.markdown(f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a `{acuracia:.3f}`, Precisão igual a `{precisao:.3f}`, Recall igual a `{recall:.3f}` e F1-score igual a `{f1:.3f}`")
-        
-if user_input:
-    st.session_state.chat_history.append({"role": "user", "content": user_input})
-    with st.chat_message("user"):
-        st.markdown(user_input)
-
-    with st.chat_message("assistant"):
-        with st.spinner("Pensando..."):
-            try:
-                response = openai.ChatCompletion.create(
-                    model="gpt-4",
-                    messages=st.session_state.chat_history
-                )
-                reply = response.choices[0].message["content"]
-            except Exception as e:
-                reply = f"Erro: {e}"
-
-        st.markdown(reply)
-    st.session_state.chat_history.append({"role": "assistant", "content": reply})
+user_input = [f"Avalie o desempenho no teste de reconhecimento de faces considerando acurácia igual a `{acuracia:.3f}`, Precisão igual a `{precisao:.3f}`, Recall igual a `{recall:.3f}` e F1-score igual a `{f1:.3f}`"]
+completion = openai.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {
+            "role": "user",
+            "content": user_input,
+        },
+    ],
+)
+st,markdown(completion.choices[0].message.content)        
