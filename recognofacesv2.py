@@ -95,27 +95,6 @@ response = client.chat.completions.create(
     ]
 )
 
-# Mostra resposta
-st.markdown(response.choices[0].message.content)
-🛠️ Alternativamente: Faça downgrade da biblioteca OpenAI (para quem quer manter o código antigo)
-Se você quiser continuar usando o código openai.ChatCompletion.create(...), você pode fazer o downgrade da biblioteca com:
-
-bash
-Copiar
-Editar
-pip install openai==0.28.1
-E no código:
-
-python
-Copiar
-Editar
-import openai
-openai.api_key = st.secrets["openai"]["api_key"]
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "..." }]
-)
 
 
 
